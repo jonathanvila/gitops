@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: List
+items:
+# Create an ingress gateway deployment that will be the entry point to
+# the bookinfo application
+- apiVersion: install.tetrate.io/v1alpha1
+  kind: IngressGateway
+  metadata:
+    namespace: bookinfo
+    name: tsb-gateway-bookinfo
+  spec: {}
+# Create the workspace and gateway group that capture the namespaces where
+# the bookinfo application will run
+- apiVersion: tsb.tetrate.io/v2
+  kind: Workspace
+  metadata:
+    name: bookinfo
+    annotations:
+      tsb.tetrate.io/organization: your-org
+      tsb.tetrate.io/tenant: your-tenant
+  spec:
+    namespaceSelector:
+      names:
+        - "*/bookinfo"
+- apiVersion: gateway.tsb.tetrate.io/v2
+  kind: Group
+  metadata:
+    name: bookinfo-gg
+    annotations:
+      tsb.tetrate.io/organization: your-org
+      tsb.tetrate.io/tenant: your-tenant
+      tsb.tetrate.io/workspace: bookinfo
+  spec:
+    namespaceSelector:
+      names:
+        - "*/*"
+    configMode: BRIDGED
+# Expose the productpage service in the application ingress
+- apiVersion: gateway.tsb.tetrate.io/v2
+  kind: IngressGateway
+  metadata:
+    name: bookinfo-gateway
+    annotations:
+      tsb.tetrate.io/organization: your-org
+      tsb.tetrate.io/tenant: your-tenant
+      tsb.tetrate.io/workspace: bookinfo
+      tsb.tetrate.io/gatewayGroup: bookinfo-gg
+  spec:
+    workloadSelector:
+      namespace: bookinfo
+      labels:
+        app: tsb-gateway-bookinfo
+    http:
+      - name: productpage
+        port: 80
+        hostname: "bookinfo.example.com"
+        routing:
+          rules:
+            - route:
+                host: "bookinfo/productpage.bookinfo.svc.cluster.local"
+                port: 9080
+---
