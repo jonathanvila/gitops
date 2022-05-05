@@ -16,8 +16,8 @@ items:
   metadata:
     name: bookinfo
     annotations:
-      tsb.tetrate.io/organization: your-org
-      tsb.tetrate.io/tenant: your-tenant
+      tsb.tetrate.io/organization: tetrate
+      tsb.tetrate.io/tenant: tetrate-tenant
   spec:
     namespaceSelector:
       names:
@@ -27,8 +27,8 @@ items:
   metadata:
     name: bookinfo-gg
     annotations:
-      tsb.tetrate.io/organization: your-org
-      tsb.tetrate.io/tenant: your-tenant
+      tsb.tetrate.io/organization: tetrate
+      tsb.tetrate.io/tenant: tetrate-tenant
       tsb.tetrate.io/workspace: bookinfo
   spec:
     namespaceSelector:
@@ -41,8 +41,8 @@ items:
   metadata:
     name: bookinfo-gateway
     annotations:
-      tsb.tetrate.io/organization: your-org
-      tsb.tetrate.io/tenant: your-tenant
+      tsb.tetrate.io/organization: tetrate
+      tsb.tetrate.io/tenant: tetrate-tenant
       tsb.tetrate.io/workspace: bookinfo
       tsb.tetrate.io/gatewayGroup: bookinfo-gg
   spec:
