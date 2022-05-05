@@ -19,8 +19,8 @@ items:
       tsb.tetrate.io/organization: tetrate
       tsb.tetrate.io/tenant: tetrate-tenant
   spec:
-    description: descrip changed at 17.00
-    displayName: displayname changed at 17.00
+    description: descrip changed at 17.3
+    displayName: displayname changed at 17.03
     namespaceSelector:
       names:
         - "*/bookinfo"
