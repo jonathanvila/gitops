@@ -14,12 +14,13 @@ items:
 - apiVersion: tsb.tetrate.io/v2
   kind: Workspace
   metadata:
-    description: changed at 16:57
     name: bookinfo
     annotations:
       tsb.tetrate.io/organization: tetrate
       tsb.tetrate.io/tenant: tetrate-tenant
   spec:
+    description: descrip changed at 17.00
+    displayName: displayname changed at 17.00
     namespaceSelector:
       names:
         - "*/bookinfo"
